@@ -1,14 +1,20 @@
-Munin plugin for the Motorola Surfboard 6120 Cable Modem
+Munin plugin for the Motorola Surfboard 6120/6141 Cable Modem
 ===========================
 
 Description
 ===
-This script uses the Munin monitoring framework to graph SNR (signal-to-noise) ratios of your SB6120 cable modem. This script will handle the possible multiple bonded channels your cable modem can use with your ISP.
+This script uses the Munin monitoring framework to graph SNR (signal-to-noise) ratios of your SB6120/SB6141 cable modem. This script will handle the possible multiple bonded channels your cable modem can use with your ISP.
+
+This is a fork of Jeff Forman's code.  Thank you for the original code, Jeff!
 
 Requirements
 ===
 * Python
+EITHER
 * A Motorola SB6120 Cable Modem (http://www.motorola.com/Consumers/US-EN/Consumer-Product-and-Services/Cable-Modems-and-Gateways/SURFboard-Cable-Modem-SB6120-US-EN)
+OR
+* A Motorola SB6141 Cable Modem (https://www.motorola.com/us/SB6141-SURFboard-eXtreme/m-SB6141-SURFboard-eXtreme.html)
+
 
 Installation
 ===
