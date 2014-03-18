@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# used values found at http://www.dslreports.com/faq/5862 as a guide for warning and critical levels
+
 import urllib
 import re
 import sys
