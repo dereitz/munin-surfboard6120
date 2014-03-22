@@ -7,13 +7,18 @@ import re
 import sys
 
 def print_config(channel_output):
-    config_text = """graph_title SB6141 Signal to Noise (dB) & Power (dBmV)
+    config_text = """multigraph snr_pwr_sb
+graph_title SB6141 Signal to Noise (dB) & Power (dBmV)
 graph_vlabel dB / dBmV
 graph_category network
 %s""" % channel_output
+    config_text += "\nmultigraph uptime_sb\n"
+    config_text += "graph_title SB6141 System Up Time (Days)\n"
+    config_text += "graph_vlabel days\n"
+    config_text += "graph_category network\n"
     print config_text
 
-snr_output = ""
+snr_output = "multigraph snr_pwr_sb\n"
 channel_output = ""
 pdOutput = ""
 cmOutput = urllib.urlopen("http://192.168.100.1/cmSignalData.htm").read()
@@ -80,6 +85,12 @@ if len(sys.argv) > 1:
     if sys.argv[1] == "config":
         print_config(channel_output)
         sys.exit(0)
+
+cmOutput = urllib.urlopen("http://192.168.100.1/indexData.htm").read()
+dOutput = re.search(r"(\d+)\s+days\s+(\d+)h:(\d+)m:(\d+)s", cmOutput)
+days = (((float(dOutput.group(2))*3600) + (float(dOutput.group(3))*60) + float(dOutput.group(4))) / 86400) + float(dOutput.group(1))
+snr_output += "\nmultigraph uptime_sb\n"
+snr_output += "uptime.value %.2f\n" % (days)
 
 print snr_output
 sys.exit(0)
